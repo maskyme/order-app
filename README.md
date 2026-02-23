@@ -64,3 +64,13 @@ http://localhost:8081
 Une fois les deux serveurs lancés :
 
 http://localhost:8081
+
+2 comptes existe déjà au lancement mais vous pouvez bien évidement en recréer si vous le souhaitez :
+
+Client:
+    Nom d'utilisateur : client
+    Mot de passe : password
+
+Cook:
+    Nom d'utilisateur : cook
+    Mot de passe : password
