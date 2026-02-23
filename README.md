@@ -42,6 +42,9 @@ Le backend sera accessible sur :
 
 http://localhost:8080
 
+et la documentation swagger à :
+http://localhost:8080/swagger-ui/index.html#/
+
 2 — Lancer le frontend
 
 Ouvrir un second terminal :
