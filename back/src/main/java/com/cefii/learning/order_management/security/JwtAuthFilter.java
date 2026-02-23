@@ -29,7 +29,6 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 
     String path = request.getServletPath();
 
-    // ✅ endpoints publics
     if (path.equals("/api/auth/login") ||
         path.equals("/api/users/register") ||
         path.startsWith("/swagger-ui") ||
