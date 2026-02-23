@@ -36,7 +36,6 @@ public class DishController {
         return ResponseEntity.ok(dishService.createDish(dish));
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT','COOK')")
     @GetMapping
     public ResponseEntity<List<Dish>> getAllDishes() {
         List<Dish> dishes = dishService.getAlldishes();

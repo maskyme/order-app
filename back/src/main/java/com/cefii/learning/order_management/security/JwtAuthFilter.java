@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean; 
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @Profile("!test")
@@ -40,7 +43,6 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 
     final String authHeader = request.getHeader("Authorization");
 
-    // ✅ aucun header ou mauvais format → on ignore juste
     if (authHeader == null || !authHeader.startsWith("Bearer ")) {
         chain.doFilter(req, res);
         return;
@@ -57,11 +59,16 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 
         if (jwtUtil.isTokenValid(jwt, userDetails)) {
 
+            String role = jwtUtil.extractRole(jwt);
+            List<GrantedAuthority> authorities = List.of(
+                new SimpleGrantedAuthority("ROLE_" + role)
+            );
+
             UsernamePasswordAuthenticationToken authToken =
                 new UsernamePasswordAuthenticationToken(
                     userDetails,
                     null,
-                    userDetails.getAuthorities()
+                    authorities
                 );
 
             authToken.setDetails(
