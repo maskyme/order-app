@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
+@Profile("!test")
 public class JwtUtil {
 
     private final String secretKey;
@@ -31,12 +33,10 @@ public class JwtUtil {
         this.expirationTime = expirationTime;
     }
 
-    // 🔍 Extract username
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    // 🔍 Extract custom claims
     public Long extractUserId(String token) {
         return extractClaim(token, claims -> claims.get("userId", Long.class));
     }
@@ -44,8 +44,6 @@ public class JwtUtil {
     public String extractRole(String token) {
         return extractClaim(token, claims -> claims.get("role", String.class));
     }
-
-    // 🔑 Generate JWT with userId + role
     public String generateToken(UserDetails userDetails) {
 
         CustomUserDetails user = (CustomUserDetails) userDetails;
@@ -63,16 +61,10 @@ public class JwtUtil {
                 .compact();
     }
 
-    // ✅ Validation
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
-
-    // ==========================
-    // Internal helpers
-    // ==========================
-
     private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);

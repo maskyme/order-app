@@ -3,6 +3,7 @@ package com.cefii.learning.order_management.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -25,41 +26,36 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
+@Profile("!test")
 public class SecurityConfig {
 
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            // ✅ IMPORTANT: enable CORS in Spring Security
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-            .csrf(csrf -> csrf.disable())
+    return http
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
 
-            .authorizeHttpRequests(auth -> auth
-                // allow preflight requests
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            // ✅ endpoints publics
+            .requestMatchers(
+                "/api/auth/**",
+                "/api/users/register",
 
-                // public endpoints
-                .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
+                // ✅ swagger
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
+                "/swagger-ui.html"
 
-                // everything else secured
-                .anyRequest().authenticated()
-            )
+            ).permitAll()
 
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-    }
-
-    // ✅ CORS configuration used by Spring Security
+            // 🔒 tout le reste sécurisé
+            .anyRequest().authenticated()
+        )
+        .build();
+}
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();

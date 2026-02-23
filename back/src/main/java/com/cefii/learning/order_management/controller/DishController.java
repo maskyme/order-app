@@ -1,7 +1,6 @@
 package com.cefii.learning.order_management.controller;
 
 import com.cefii.learning.order_management.model.Dish;
-import com.cefii.learning.order_management.model.Order;
 import com.cefii.learning.order_management.service.DishService;
 
 import jakarta.validation.Valid;

@@ -1,1 +1,4 @@
-/home/mejer1/Bureau/order-management/src/test/java/com/cefii/learning/order_management/OrderManagementApplicationTests.java
+/home/mejer1/Bureau/order-app/back/src/test/java/com/cefii/learning/order_management/OrderManagementApplicationTests.java
+/home/mejer1/Bureau/order-app/back/src/test/java/com/cefii/learning/order_management/controller/dishControllerTest.java
+/home/mejer1/Bureau/order-app/back/src/test/java/com/cefii/learning/order_management/dish/dishServiceTest.java
+/home/mejer1/Bureau/order-app/back/src/test/java/com/cefii/learning/order_management/repository/dishRepositoryTest.java

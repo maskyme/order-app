@@ -15,7 +15,6 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
-    // 🔑 Expose userId and role for JWT
     public Long getUserId() {
         return user.getId();
     }

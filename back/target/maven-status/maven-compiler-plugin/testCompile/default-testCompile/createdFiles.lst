@@ -1,0 +1,4 @@
+com/cefii/learning/order_management/repository/DishRepositoryTest.class
+com/cefii/learning/order_management/dish/DishServiceTest.class
+com/cefii/learning/order_management/controller/DishControllerTest.class
+com/cefii/learning/order_management/OrderManagementApplicationTests.class

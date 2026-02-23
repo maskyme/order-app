@@ -40,11 +40,6 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthResponse(jwt));
     }
-
-    // ==========================
-    // DTOs
-    // ==========================
-
     public static class AuthResponse {
         private final String token;
 

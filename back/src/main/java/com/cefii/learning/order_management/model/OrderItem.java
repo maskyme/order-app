@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity

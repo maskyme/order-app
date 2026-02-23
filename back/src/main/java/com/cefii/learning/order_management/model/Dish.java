@@ -1,7 +1,6 @@
 package com.cefii.learning.order_management.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -38,6 +37,5 @@ public class Dish {
 
     @Column(nullable = false)
     private boolean deleted = false;
-
 
 }   
