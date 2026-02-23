@@ -32,8 +32,11 @@ npm -v
 Il faut ouvrir deux terminaux.
 1 — Lancer le backend
 
+```
 cd ./back
+mvn test
 mvn spring-boot:run
+```
 
 Le backend sera accessible sur :
 
@@ -43,9 +46,11 @@ http://localhost:8080
 
 Ouvrir un second terminal :
 
+```
 cd ./front
 npm install
 npm run dev
+```
 
 Le frontend sera accessible sur :
 
