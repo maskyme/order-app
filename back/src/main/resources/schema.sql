@@ -1,0 +1,1 @@
+-- schema.sql disabled: Hibernate manages schema creation

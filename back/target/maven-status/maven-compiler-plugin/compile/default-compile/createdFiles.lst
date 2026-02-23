@@ -6,6 +6,7 @@ com/cefii/learning/order_management/model/Dish$DishBuilder.class
 com/cefii/learning/order_management/security/TestSecurityConfig.class
 com/cefii/learning/order_management/controller/DishController.class
 com/cefii/learning/order_management/repository/OrderItemRepository.class
+com/cefii/learning/order_management/config/DataInitializer.class
 com/cefii/learning/order_management/security/JwtUtil.class
 com/cefii/learning/order_management/controller/OrderItemController.class
 com/cefii/learning/order_management/repository/UserRepository.class

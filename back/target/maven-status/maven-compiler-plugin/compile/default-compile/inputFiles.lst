@@ -1,4 +1,5 @@
 /home/mejer1/Bureau/order-app/back/src/main/java/com/cefii/learning/order_management/OrderManagementApplication.java
+/home/mejer1/Bureau/order-app/back/src/main/java/com/cefii/learning/order_management/config/DataInitializer.java
 /home/mejer1/Bureau/order-app/back/src/main/java/com/cefii/learning/order_management/controller/AuthController.java
 /home/mejer1/Bureau/order-app/back/src/main/java/com/cefii/learning/order_management/controller/DishController.java
 /home/mejer1/Bureau/order-app/back/src/main/java/com/cefii/learning/order_management/controller/OrderController.java
